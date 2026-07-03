@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMRDHYA | Admin Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Admin Login Screen (Hidden if session is active) -->
+    <div id="admin-login-screen" class="admin-login-wrapper">
+        <div class="admin-login-card">
+            <div class="admin-logo">
+                <span class="brand-text">SIMRDHYA</span>
+                <span class="admin-tag">ADMIN PORTAL</span>
+            </div>
+            <h2 class="admin-login-title">Namaste Admin</h2>
+            <p class="admin-login-subtitle">Log in to manage your fashion caravan</p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email">Admin Email</label>
+                    <input type="email" id="admin-email" required placeholder="admin@simrdhya.com">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="admin-btn admin-btn-primary">Authenticate <i class="fa-solid fa-key"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Main Layout (Hidden if not logged in) -->
+    <div id="admin-dashboard" class="admin-dashboard-container" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <span class="brand-title">SIMRDHYA</span>
+                <span class="brand-subtitle">CARAVAN DASHBOARD</span>
+            </div>
+            <nav class="admin-nav">
+                <button class="admin-nav-btn active" data-tab="products"><i class="fa-solid fa-shirt"></i> Products Catalog</button>
+                <button class="admin-nav-btn" data-tab="orders"><i class="fa-solid fa-truck-ramp-box"></i> Manage Orders</button>
+                <button class="admin-nav-btn" data-tab="coupons"><i class="fa-solid fa-tags"></i> Coupon Manager</button>
+                <a href="/" class="admin-nav-btn-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-info">
+                    <span id="admin-user-name">Admin Caravan</span>
+                    <span class="admin-badge">Super User</span>
+                </div>
+                <button id="admin-logout-btn" class="admin-btn admin-btn-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main-content">
+            <!-- Products Panel -->
+            <section id="tab-panel-products" class="admin-tab-panel active">
+                <div class="admin-section-header">
+                    <h2>Products Catalog</h2>
+                    <button class="admin-btn admin-btn-success" id="open-add-product-modal-btn"><i class="fa-solid fa-plus"></i> Add New Garment</button>
+                </div>
+                
+                <div class="admin-card-table">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price (₹)</th>
+                                <th>Orig Price (₹)</th>
+                                <th>Stock</th>
+                                <th>Badge</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Orders Panel -->
+            <section id="tab-panel-orders" class="admin-tab-panel">
+                <div class="admin-section-header">
+                    <h2>Order Shipments</h2>
+                </div>
+                
+                <div class="admin-card-table">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer Details</th>
+                                <th>Items Ordered</th>
+                                <th>Total paid (₹)</th>
+                                <th>Payment</th>
+                                <th>Order Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Coupons Panel -->
+            <section id="tab-panel-coupons" class="admin-tab-panel">
+                <div class="admin-section-header">
+                    <h2>Coupon Manager</h2>
+                    <button class="admin-btn admin-btn-success" id="open-add-coupon-modal-btn"><i class="fa-solid fa-plus"></i> Create Coupon</button>
+                </div>
+                
+                <div class="admin-card-table">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Promo Code</th>
+                                <th>Discount Percentage (%)</th>
+                                <th>Active Status</th>
+                                <th>Expiry Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coupons-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Product CRUD Modal -->
+    <div class="admin-modal-overlay" id="product-modal-overlay"></div>
+    <div class="admin-modal" id="product-modal">
+        <button class="admin-modal-close" id="product-modal-close"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="product-modal-title">Add New Product</h3>
+        <form id="product-crud-form">
+            <input type="hidden" id="edit-product-id">
+            
+            <div class="form-row">
+                <div class="form-group flex-2">
+                    <label for="prod-name">Garment Name</label>
+                    <input type="text" id="prod-name" required placeholder="E.g., Rangoli Mustard Kurta">
+                </div>
+                <div class="form-group">
+                    <label for="prod-category">Category</label>
+                    <select id="prod-category" required>
+                        <option value="kurtas">Kurtas & Kurtis</option>
+                        <option value="sarees">Sarees & Lehengas</option>
+                        <option value="fusion">Fusion Wear</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="prod-desc">Description</label>
+                <textarea id="prod-desc" required rows="3" placeholder="Tell the product's design kahani..."></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prod-price">Sale Price (₹)</label>
+                    <input type="number" id="prod-price" required min="0" placeholder="E.g., 2499">
+                </div>
+                <div class="form-group">
+                    <label for="prod-orig-price">Original Price (₹)</label>
+                    <input type="number" id="prod-orig-price" required min="0" placeholder="E.g., 3499">
+                </div>
+                <div class="form-group">
+                    <label for="prod-stock">Initial Stock</label>
+                    <input type="number" id="prod-stock" required min="0" placeholder="E.g., 15">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prod-badge">Badge Label</label>
+                    <select id="prod-badge">
+                        <option value="NEW">NEW</option>
+                        <option value="BESTSELLER">BESTSELLER</option>
+                        <option value="LIMITED">LIMITED</option>
+                        <option value="HOT">HOT</option>
+                    </select>
+                </div>
+                <div class="form-group flex-2">
+                    <label for="prod-images">Upload Image File (Will host on Cloudinary or locally)</label>
+                    <input type="file" id="prod-images" accept="image/*">
+                    <p style="font-size: 0.72rem; color: #718096; margin-top: 0.25rem;" id="prod-img-current-path"></p>
+                </div>
+            </div>
+            
+            <button type="submit" class="admin-btn admin-btn-primary admin-btn-block" id="product-modal-submit-btn">Save Product</button>
+        </form>
+    </div>
+
+    <!-- Coupon CRUD Modal -->
+    <div class="admin-modal-overlay" id="coupon-modal-overlay"></div>
+    <div class="admin-modal" id="coupon-modal">
+        <button class="admin-modal-close" id="coupon-modal-close"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="coupon-modal-title">Create Discount Coupon</h3>
+        <form id="coupon-crud-form">
+            <input type="hidden" id="edit-coupon-id">
+            
+            <div class="form-group">
+                <label for="coup-code">Promo Coupon Code</label>
+                <input type="text" id="coup-code" required placeholder="E.g., FESTIVE15" style="text-transform: uppercase;">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="coup-discount">Discount Percentage (%)</label>
+                    <input type="number" id="coup-discount" required min="1" max="100" placeholder="E.g., 15">
+                </div>
+                <div class="form-group">
+                    <label for="coup-expiry">Expiry Date</label>
+                    <input type="date" id="coup-expiry" required>
+                </div>
+            </div>
+            
+            <div class="form-group flex-row align-center" style="gap: 0.5rem; margin-top: 1rem;">
+                <input type="checkbox" id="coup-active" checked style="width: auto;">
+                <label for="coup-active" style="margin-bottom: 0;">Mark Coupon as Active</label>
+            </div>
+            
+            <button type="submit" class="admin-btn admin-btn-primary admin-btn-block" style="margin-top: 1.5rem;">Save Coupon</button>
+        </form>
+    </div>
+
+    <!-- Admin Actions Scripts -->
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMRDHYA | Modern Premium Ethnic Fashion</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span>✨ FREE SHIPPING ON ALL INDIAN ORDERS OVER ₹2,999 • COD AVAILABLE ✨</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <a href="#" class="brand-logo-img">
+                <img src="assets/logo.png" alt="SIMRDHYA Logo" class="logo-image-file">
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
+                    <li><a href="#categories" class="nav-link">Shop Categories</a></li>
+                    <li><a href="#about-us" class="nav-link">Our Kahani</a></li>
+                    <li><a href="#contact" class="nav-link">Baat Karein</a></li>
+                </ul>
+            </nav>
+
+            <!-- Action Icons -->
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Search kurtas, sarees..." id="search-input">
+                    <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <button class="action-btn" id="user-profile-trigger" aria-label="User Account">
+                    <i class="fa-regular fa-user"></i>
+                    <span id="user-profile-name" style="font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem; display: none;"></span>
+                </button>
+                <button class="action-btn cart-trigger" id="cart-trigger" aria-label="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+        <!-- Truck-Art Pattern Accent Border -->
+        <div class="truck-art-border-bottom"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Banner Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-grid">
+                    <!-- Left: Typography & Intro -->
+                    <div class="hero-content">
+                        <div class="truck-art-tag">
+                            <span class="tag-text">MADE TO SLAY, STYLED TO STAY</span>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="title-accent">Naye Rang,</span><br>
+                            <span class="title-main">Naye Andaaz</span>
+                        </h1>
+                        <p class="hero-description">
+                            Simrdhya merges the unapologetic vibrancy of Indian truck art with modern, premium silhouettes. Handcrafted elegance designed for the bold contemporary wardrobe.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#new-arrivals" class="btn btn-primary">Shop the Collection <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#about-us" class="btn btn-secondary">Our Story</a>
+                        </div>
+                        <!-- Mini Truck Art Icon (Tassel) -->
+                        <div class="tassel-icon-container">
+                            <svg class="tassel-svg" viewBox="0 0 100 50">
+                                <circle cx="50" cy="10" r="8" fill="#FF1493" />
+                                <line x1="50" y1="18" x2="50" y2="30" stroke="#FFD700" stroke-width="3" />
+                                <polygon points="40,30 60,30 50,48" fill="#00D2C4" />
+                                <circle cx="40" cy="30" r="3" fill="#FFD700" />
+                                <circle cx="60" cy="30" r="3" fill="#FFD700" />
+                                <line x1="45" y1="35" x2="45" y2="45" stroke="#FF1493" stroke-width="1.5" />
+                                <line x1="55" y1="35" x2="55" y2="45" stroke="#FF1493" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right: Premium Editorial Model Photo with Truck-Art Border Frame -->
+                    <div class="hero-image-wrapper">
+                        <div class="truck-art-frame">
+                            <div class="frame-border-outer"></div>
+                            <div class="frame-border-inner"></div>
+                            <div class="frame-corners">
+                                <div class="corner top-left"></div>
+                                <div class="corner top-right"></div>
+                                <div class="corner bottom-left"></div>
+                                <div class="corner bottom-right"></div>
+                            </div>
+                            <img src="assets/hero.png" alt="Simrdhya Premium Indian Ethnic Fashion Model" class="hero-image">
+                            <!-- Overlay Truck Art Motif (Lotus) -->
+                            <div class="frame-badge">
+                                <svg class="badge-lotus" viewBox="0 0 100 100">
+                                    <path d="M50,15 C40,40 20,45 50,85 C80,45 60,40 50,15 Z" fill="#FF1493" stroke="#FFD700" stroke-width="3" />
+                                    <path d="M50,30 C30,50 35,60 50,85 C65,60 70,50 50,30 Z" fill="#FF8C00" stroke="#FFD700" stroke-width="2" />
+                                    <path d="M50,45 C40,60 42,65 50,85 C58,65 60,60 50,45 Z" fill="#00D2C4" stroke="#FFD700" stroke-width="1.5" />
+                                    <path d="M25,60 C35,60 40,70 50,85 C40,70 15,75 25,60 Z" fill="#FF1493" stroke="#FFD700" stroke-width="2" />
+                                    <path d="M75,60 C65,60 60,70 50,85 C60,70 85,75 75,60 Z" fill="#FF1493" stroke="#FFD700" stroke-width="2" />
+                                </svg>
+                                <span>100% HANDLOOM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative Section Divider -->
+            <div class="section-divider-truck">
+                <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
+                    <path d="M0,0 Q150,30 300,0 T600,0 T900,0 T1200,0 L1200,40 L0,40 Z" fill="#FFD700"></path>
+                    <path d="M0,10 Q150,35 300,10 T600,10 T900,10 T1200,10 L1200,40 L0,40 Z" fill="#FF1493"></path>
+                    <path d="M0,20 Q150,40 300,20 T600,20 T900,20 T1200,20 L1200,40 L0,40 Z" fill="#00D2C4"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Shop by Category Section -->
+        <section id="categories" class="categories-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="header-motif">
+                        <svg class="motif-peacocks" viewBox="0 0 200 60">
+                            <!-- Left Peacock -->
+                            <path d="M20,40 C10,35 5,20 15,10 C25,5 35,15 35,25 C35,35 45,45 60,45" fill="none" stroke="#00D2C4" stroke-width="3"/>
+                            <path d="M15,10 C20,10 25,15 22,22 C18,25 12,20 15,10 Z" fill="#FF1493"/>
+                            <circle cx="18" cy="14" r="2" fill="#FFD700"/>
+                            <!-- Right Peacock -->
+                            <path d="M180,40 C190,35 195,20 185,10 C175,5 165,15 165,25 C165,35 155,45 140,45" fill="none" stroke="#00D2C4" stroke-width="3"/>
+                            <path d="M185,10 C180,10 175,15 178,22 C182,25 188,20 185,10 Z" fill="#FF1493"/>
+                            <circle cx="182" cy="14" r="2" fill="#FFD700"/>
+                            <!-- Center Lotus -->
+                            <path d="M100,20 C95,30 90,35 100,50 C110,35 105,30 100,20 Z" fill="#FF1493" stroke="#FFD700" stroke-width="2"/>
+                            <path d="M100,30 C88,40 92,45 100,50 C108,45 112,40 100,30 Z" fill="#FF8C00" stroke="#FFD700" stroke-width="1.5"/>
+                            <path d="M85,38 C92,38 95,45 100,50 C95,45 80,42 85,38 Z" fill="#FF1493" stroke="#FFD700" stroke-width="1.5"/>
+                            <path d="M115,38 C108,38 105,45 100,50 C105,45 120,42 115,38 Z" fill="#FF1493" stroke="#FFD700" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="section-title">Shop by Category</h2>
+                    <p class="section-subtitle">Discover curated premium collections styled for modern celebrations</p>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Category Card 1 -->
+                    <div class="category-card" data-category="kurtas">
+                        <div class="category-img-container">
+                            <img src="assets/cat_kurtis.png" alt="Premium Kurtas & Kurtis Collection" class="category-image">
+                            <div class="category-overlay">
+                                <div class="category-border-decor"></div>
+                                <div class="category-content-inner">
+                                    <h3 class="category-card-title">Kurtas & Kurtis</h3>
+                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 2 -->
+                    <div class="category-card" data-category="sarees">
+                        <div class="category-img-container">
+                            <img src="assets/cat_sarees.png" alt="Elegant Festive Sarees & Lehengas" class="category-image">
+                            <div class="category-overlay">
+                                <div class="category-border-decor"></div>
+                                <div class="category-content-inner">
+                                    <h3 class="category-card-title">Sarees & Lehengas</h3>
+                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 3 -->
+                    <div class="category-card" data-category="fusion">
+                        <div class="category-img-container">
+                            <img src="assets/cat_fusion.png" alt="Contemporary Indo-Western Fusion Wear" class="category-image">
+                            <div class="category-overlay">
+                                <div class="category-border-decor"></div>
+                                <div class="category-content-inner">
+                                    <h3 class="category-card-title">Fusion Wear</h3>
+                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals / Store Grid Section -->
+        <section id="new-arrivals" class="arrivals-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">New Arrivals</h2>
+                    <p class="section-subtitle">Freshly dropped handcrafted ethnic styles to elevate your style quotient</p>
+                </div>
+
+                <!-- Store Filters -->
+                <div class="store-filters">
+                    <button class="filter-btn active" data-filter="all">All Styles</button>
+                    <button class="filter-btn" data-filter="kurtas">Kurtas & Kurtis</button>
+                    <button class="filter-btn" data-filter="sarees">Sarees & Lehengas</button>
+                    <button class="filter-btn" data-filter="fusion">Fusion Wear</button>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Product cards will be dynamically rendered via JS, fallback for SEO -->
+                    <article class="product-card" data-category="kurtas">
+                        <div class="product-img-wrapper">
+                            <img src="assets/prod_yellow_kurta.png" alt="Rangoli Mustard Kurta" class="product-image">
+                            <span class="product-badge hot">BESTSELLER</span>
+                            <div class="product-actions">
+                                <button class="prod-action-btn quick-view-trigger" aria-label="Quick View"><i class="fa-regular fa-eye"></i></button>
+                                <button class="prod-action-btn add-to-cart-trigger" aria-label="Add to Cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-subcat">Kurtas & Kurtis</span>
+                            <h3 class="product-title">Rangoli Mustard A-Line Kurta</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="review-count">(48)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹2,499</span>
+                                <span class="original-price">₹3,499</span>
+                                <span class="discount-tag">28% OFF</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Banner (Truck-Art Themed Accent Promo) -->
+        <section class="promo-banner-section">
+            <div class="promo-container">
+                <div class="promo-bg-border">
+                    <div class="promo-inner">
+                        <div class="promo-text-column">
+                            <h2 class="promo-headline">SAATHI HATH BADHANA</h2>
+                            <p class="promo-subline">Every purchase supports our artisan clusters and handloom weavers across Rajasthan & Gujarat.</p>
+                            <a href="#about-us" class="btn btn-primary btn-yellow">Learn Our Kahani</a>
+                        </div>
+                        <div class="promo-decoration-column">
+                            <svg class="truck-illustration" viewBox="0 0 200 120">
+                                <!-- Stylized Front Cabin of an Indian Truck -->
+                                <rect x="20" y="20" width="100" height="80" rx="10" fill="#FF1493" stroke="#FFD700" stroke-width="4"/>
+                                <rect x="120" y="40" width="60" height="60" rx="5" fill="#00D2C4" stroke="#FFD700" stroke-width="3"/>
+                                <!-- Windshield -->
+                                <rect x="35" y="30" width="70" height="25" fill="#E0FFFF" stroke="#FFD700" stroke-width="2"/>
+                                <!-- Windows -->
+                                <rect x="130" y="48" width="20" height="20" fill="#E0FFFF" stroke="#FFD700" stroke-width="1.5"/>
+                                <!-- Wheels -->
+                                <circle cx="50" cy="100" r="15" fill="#1A1A1A" stroke="#FFD700" stroke-width="2"/>
+                                <circle cx="50" cy="100" r="6" fill="#FF1493"/>
+                                <circle cx="150" cy="100" r="15" fill="#1A1A1A" stroke="#FFD700" stroke-width="2"/>
+                                <circle cx="150" cy="100" r="6" fill="#FF1493"/>
+                                <!-- Eyes on the headlights (truck art classic) -->
+                                <circle cx="35" cy="80" r="8" fill="#FFF" stroke="#FF8C00" stroke-width="2"/>
+                                <circle cx="35" cy="80" r="3" fill="#000"/>
+                                <circle cx="105" cy="80" r="8" fill="#FFF" stroke="#FF8C00" stroke-width="2"/>
+                                <circle cx="105" cy="80" r="3" fill="#000"/>
+                                <!-- Decorative Banner text -->
+                                <rect x="30" y="62" width="80" height="10" fill="#FFD700"/>
+                                <text x="70" y="70" font-family="'Yatra One', cursive" font-size="7" fill="#FF1493" text-anchor="middle">SIMRDHYA CARAVAN</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text-content">
+                        <span class="about-tagline">KAHANI SUNO</span>
+                        <h2 class="about-title">Bridging Heritage with Contemporary Silhouettes</h2>
+                        <p class="about-p">
+                            At Simrdhya, we believe that fashion is a canvas for storytelling. Our brand is born from a deep love for Indian folk arts, specifically the bold, energetic visual vocabulary of <strong>Indian Truck Art</strong>. 
+                        </p>
+                        <p class="about-p">
+                            Historically a medium for truckers to display their hometown pride, religious devotion, and poetic wit, truck art represents the unfiltered soul of India's pop culture. We extract its most stunning elements—vibrant colors, clean hand-painted motifs, and decorative borders—and blend them into premium contemporary clothing.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                                <div>
+                                    <h4>Premium Fabrics</h4>
+                                    <p>Crafted using luxury handloom silks, raw cottons, and breathable linens.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                <div>
+                                    <h4>Ethically Handcrafted</h4>
+                                    <p>Fair wages and direct support for rural craft clusters across western India.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visuals">
+                        <div class="decor-collage">
+                            <div class="decor-panel panel-pink">
+                                <h3>Horn OK Please</h3>
+                                <p>A symbol of safe journey & shared joy on the highway of life.</p>
+                            </div>
+                            <div class="decor-panel panel-yellow">
+                                <h3>Buri Nazar Wale</h3>
+                                <p>Tera Mooh Kala! Protect your wardrope from boring fashion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Gallery Section -->
+        <section class="instagram-section">
+            <div class="container-fluid">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><i class="fa-brands fa-instagram instagram-header-icon"></i> Styled by You</h2>
+                    <p class="section-subtitle">Tag @SimrdhyaOfficial and use #SimrdhyaSlayers to get featured</p>
+                </div>
+                <div class="instagram-feed" id="instagram-feed">
+                    <!-- Dynamic Instagram Grid -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Info / Truck Art Decorative Card -->
+                    <div class="contact-info-card">
+                        <h3 class="contact-card-title">Baat Karein?</h3>
+                        <p class="contact-card-text">Hum Yahin Hain! Drop us a message for sizing help, custom orders, or shipping inquiries.</p>
+                        
+                        <div class="contact-details">
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                <div>
+                                    <span>Gup-Shup & Support</span>
+                                    <p>+91 98765 43210</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                                <div>
+                                    <span>Send an Email</span>
+                                    <p>namaste@simrdhya.com</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <div>
+                                    <span>Head Office</span>
+                                    <p>Caravan House, Sector 5, Jaipur, Rajasthan</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Truck Art Motif -->
+                        <div class="contact-decor-svg">
+                            <svg viewBox="0 0 100 80" class="lotus-hanging">
+                                <path d="M50,10 C45,30 30,35 50,70 C70,35 55,30 50,10 Z" fill="#FFD700" stroke="#FF1493" stroke-width="2"/>
+                                <path d="M50,22 C40,38 35,42 50,70 C65,42 60,38 50,22 Z" fill="#00D2C4" stroke="#FF1493" stroke-width="1.5"/>
+                                <!-- Tassel hangs -->
+                                <line x1="50" y1="70" x2="50" y2="76" stroke="#FF1493" stroke-width="2"/>
+                                <circle cx="50" cy="78" r="2" fill="#FFD700"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">Your Name</label>
+                                    <input type="text" id="contact-name" required placeholder="E.g., Simran Sharma">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">Email Address</label>
+                                    <input type="email" id="contact-email" required placeholder="E.g., simran@gmail.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">What are we talking about?</label>
+                                <select id="contact-subject">
+                                    <option value="sizing">Size Consultation Help</option>
+                                    <option value="order">Existing Order Status</option>
+                                    <option value="custom">Custom Styling / Bridal Queries</option>
+                                    <option value="other">General Chit-Chat</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Your Message</label>
+                                <textarea id="contact-message" rows="5" required placeholder="Type your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                            <div id="form-feedback" class="form-feedback"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1: Brand -->
+                    <div class="footer-col brand-col">
+                        <div class="footer-logo-img">
+                            <img src="assets/logo.png" alt="SIMRDHYA Logo" class="footer-logo-image-file">
+                        </div>
+                        <p class="footer-about">Merging ancient Indian folk art palettes with modern high-fashion silhouettes. Wear the story, keep the heritage alive.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                            <a href="#" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <!-- Column 2: Shop Links -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Shop Collections</h4>
+                        <ul class="footer-links">
+                            <li><a href="#new-arrivals">New Arrivals</a></li>
+                            <li><a href="#categories">Kurtas & Kurtis</a></li>
+                            <li><a href="#categories">Sarees & Lehengas</a></li>
+                            <li><a href="#categories">Fusion Sets</a></li>
+                            <li><a href="#categories">Artisan Specials</a></li>
+                        </ul>
+                    </div>
+                    <!-- Column 3: Customer Care -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Customer Care</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Track Order</a></li>
+                            <li><a href="#">Size Guides</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Artisan Empowerment</a></li>
+                        </ul>
+                    </div>
+                    <!-- Column 4: Newsletter -->
+                    <div class="footer-col newsletter-col">
+                        <h4 class="footer-title">Join The Caravan</h4>
+                        <p class="newsletter-text">Subscribe to get early access to new collection drops, artisan features, and a flat 10% off your first purchase!</p>
+                        <form class="newsletter-form" id="newsletter-form">
+                            <input type="email" placeholder="Your Email Address" required id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+                        </form>
+                        <div id="newsletter-feedback" class="newsletter-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Truck Art Quote Ribbon -->
+        <div class="truck-art-quote-ribbon">
+            <marquee behavior="scroll" direction="left" scrollamount="4">
+                🌸 DEKHO MAGAR PYAAR SE • HORN OK PLEASE • BURI NAZAR WALE TERA MOOH KALA • PHIR MILENGE CHALTE CHALTE • JALDI MILO SUNDER LADY • HASTE RAHO MUSKURATE RAHO 🌸
+            </marquee>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-flex">
+                    <p class="copyright">&copy; 2026 SIMRDHYA Fashion Private Limited. All Rights Reserved.</p>
+                    <div class="payment-partners">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                        <i class="fa-brands fa-cc-apple-pay"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer (Right Slide-out) -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Caravan (<span id="cart-drawer-count">0</span>)</h3>
+            <button class="cart-close" id="cart-close" aria-label="Close Cart">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <!-- Scrollable Cart Items -->
+        <div class="cart-body" id="cart-body">
+            <!-- Empty Cart State -->
+            <div class="empty-cart" id="empty-cart-state">
+                <div class="empty-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                <p>Your caravan is empty! Add beautiful garments to fill it up.</p>
+                <a href="#new-arrivals" class="btn btn-primary cart-shop-btn">Start Shopping</a>
+            </div>
+            <!-- Cart Items Grid -->
+            <div class="cart-items-list" id="cart-items-list">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+        <!-- Cart Footer -->
+        <div class="cart-footer" id="cart-footer">
+            <!-- Coupon Input Box -->
+            <div class="cart-coupon-box">
+                <input type="text" placeholder="Promo Code (e.g. CARAVAN10)" id="cart-coupon-input">
+                <button id="cart-coupon-apply-btn" class="btn-coupon-apply">Apply</button>
+            </div>
+            <div id="cart-coupon-message" class="coupon-message"></div>
+            
+            <div class="cart-summary-calculations">
+                <div class="calc-row">
+                    <span>Bag Subtotal:</span>
+                    <span id="calc-subtotal">₹0</span>
+                </div>
+                <div class="calc-row discount-row" id="calc-discount-container" style="display: none;">
+                    <span>Discount (<span id="calc-coupon-label"></span>):</span>
+                    <span id="calc-discount-val">-₹0</span>
+                </div>
+                <div class="subtotal-row">
+                    <span>Subtotal:</span>
+                    <span class="subtotal-amount" id="cart-subtotal">₹0</span>
+                </div>
+            </div>
+            <p class="cart-shipping-tip">Taxes and shipping calculated at checkout</p>
+            <button class="btn btn-primary btn-block checkout-btn" id="checkout-trigger-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal (Popup) -->
+    <div class="modal-overlay" id="quick-view-overlay"></div>
+    <div class="modal" id="quick-view-modal">
+        <button class="modal-close" id="quick-view-close" aria-label="Close Popup">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-content-grid" id="modal-content-wrapper">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div class="modal-overlay" id="size-guide-overlay"></div>
+    <div class="modal size-guide-modal" id="size-guide-modal">
+        <button class="modal-close" id="size-guide-close" aria-label="Close Size Guide">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="size-guide-content">
+            <h2 class="size-guide-title">SIMRDHYA Size Chart</h2>
+            <p class="size-guide-subtitle">Follow this size chart to find your perfect fit</p>
+            
+            <table class="size-chart-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Bust (in)</th>
+                        <th>Waist (in)</th>
+                        <th>Hips (in)</th>
+                        <th>Length (in)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>S</strong> (Small)</td>
+                        <td>34 - 36</td>
+                        <td>28 - 30</td>
+                        <td>36 - 38</td>
+                        <td>42</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M</strong> (Medium)</td>
+                        <td>36 - 38</td>
+                        <td>30 - 32</td>
+                        <td>38 - 40</td>
+                        <td>43</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L</strong> (Large)</td>
+                        <td>38 - 40</td>
+                        <td>32 - 34</td>
+                        <td>40 - 42</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XL</strong> (X-Large)</td>
+                        <td>40 - 42</td>
+                        <td>34 - 36</td>
+                        <td>42 - 44</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XXL</strong> (2X-Large)</td>
+                        <td>42 - 44</td>
+                        <td>36 - 38</td>
+                        <td>44 - 46</td>
+                        <td>45</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="size-guide-info">
+                <h4><i class="fa-solid fa-circle-info"></i> How to Measure</h4>
+                <ul>
+                    <li><strong>Bust</strong>: Measure around the fullest part of your chest.</li>
+                    <li><strong>Waist</strong>: Measure around your natural waistline.</li>
+                    <li><strong>Hips</strong>: Measure around the widest part of your hips.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Multi-Step Modal -->
+    <div class="modal-overlay" id="checkout-overlay"></div>
+    <div class="modal checkout-modal" id="checkout-modal">
+        <button class="modal-close" id="checkout-close" aria-label="Close Checkout">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="checkout-modal-content">
+            <!-- Stepper Progress Header -->
+            <div class="checkout-stepper">
+                <div class="step-indicator active" data-step="1">
+                    <span class="step-num">1</span>
+                    <span class="step-text">Details</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-indicator" data-step="2">
+                    <span class="step-num">2</span>
+                    <span class="step-text">Payment</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-indicator" data-step="3">
+                    <span class="step-num">3</span>
+                    <span class="step-text">Confirm</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Details Form -->
+            <div class="checkout-step-panel active" id="checkout-step-1">
+                <h3 class="checkout-step-title">Shipping Details</h3>
+                <form id="shipping-details-form" class="checkout-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="shipping-name">Full Name</label>
+                            <input type="text" id="shipping-name" required placeholder="E.g., Avani Sharma">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping-phone">Phone Number</label>
+                            <input type="tel" id="shipping-phone" required placeholder="10-digit mobile number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-email">Email Address</label>
+                        <input type="email" id="shipping-email" required placeholder="E.g., avani@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-address">Delivery Address</label>
+                        <input type="text" id="shipping-address" required placeholder="Flat, Street, Area">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="shipping-city">City</label>
+                            <input type="text" id="shipping-city" required placeholder="E.g., Jaipur">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping-zip">Pincode</label>
+                            <input type="text" id="shipping-zip" required placeholder="6-digit ZIP code">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block checkout-next-btn">Continue to Payment <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+
+            <!-- Step 2: Payment Selector -->
+            <div class="checkout-step-panel" id="checkout-step-2">
+                <h3 class="checkout-step-title">Payment Method</h3>
+                <div class="payment-method-selector">
+                    <div class="pay-method-card active" data-method="upi">
+                        <div class="pay-icon"><i class="fa-solid fa-qrcode"></i></div>
+                        <span>Instant UPI</span>
+                    </div>
+                    <div class="pay-method-card" data-method="card">
+                        <div class="pay-icon"><i class="fa-solid fa-credit-card"></i></div>
+                        <span>Card Payment</span>
+                    </div>
+                    <div class="pay-method-card" data-method="cod">
+                        <div class="pay-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                        <span>Cash on Delivery</span>
+                    </div>
+                </div>
+
+                <!-- UPI Container -->
+                <div class="payment-details-container active" id="pay-container-upi">
+                    <p class="pay-desc">Scan this QR Code using any UPI app (GPay, PhonePe, Paytm) to complete payment.</p>
+                    <div class="upi-qr-wrapper">
+                        <div class="mock-qr-code">
+                            <div class="qr-block top-left"></div>
+                            <div class="qr-block top-right"></div>
+                            <div class="qr-block bottom-left"></div>
+                            <div class="qr-pattern"></div>
+                        </div>
+                        <div class="upi-amount-badge">Payable: <strong id="upi-total-amount">₹0</strong></div>
+                    </div>
+                </div>
+
+                <!-- Card Container -->
+                <div class="payment-details-container" id="pay-container-card">
+                    <form id="card-payment-form" class="checkout-form">
+                        <div class="form-group">
+                            <label for="card-num">Card Number</label>
+                            <input type="text" id="card-num" placeholder="XXXX XXXX XXXX XXXX">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">Expiry Date</label>
+                                <input type="text" id="card-expiry" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvv">CVV</label>
+                                <input type="password" id="card-cvv" placeholder="XXX">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- COD Container -->
+                <div class="payment-details-container" id="pay-container-cod">
+                    <p class="pay-desc">✨ Cash on Delivery (COD) order. Pay in cash or via UPI to our delivery partner when your Caravan arrives.</p>
+                </div>
+
+                <div class="payment-actions">
+                    <button class="btn btn-secondary checkout-back-btn" id="pay-back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary checkout-next-btn" id="pay-submit-btn">Place Order <i class="fa-solid fa-check"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div class="checkout-step-panel text-center" id="checkout-step-3">
+                <div class="success-caravan-animation">
+                    <svg class="success-truck" viewBox="0 0 200 120">
+                        <rect x="20" y="20" width="100" height="80" rx="10" fill="#FF1493" stroke="#FFD700" stroke-width="4"/>
+                        <rect x="120" y="40" width="60" height="60" rx="5" fill="#00D2C4" stroke="#FFD700" stroke-width="3"/>
+                        <rect x="35" y="30" width="70" height="25" fill="#E0FFFF" stroke="#FFD700" stroke-width="2"/>
+                        <rect x="130" y="48" width="20" height="20" fill="#E0FFFF" stroke="#FFD700" stroke-width="1.5"/>
+                        <circle cx="50" cy="100" r="15" fill="#1A1A1A" stroke="#FFD700" stroke-width="2"/>
+                        <circle cx="50" cy="100" r="6" fill="#FF1493"/>
+                        <circle cx="150" cy="100" r="15" fill="#1A1A1A" stroke="#FFD700" stroke-width="2"/>
+                        <circle cx="150" cy="100" r="6" fill="#FF1493"/>
+                        <circle cx="35" cy="80" r="8" fill="#FFF" stroke="#FF8C00" stroke-width="2"/>
+                        <circle cx="35" cy="80" r="3" fill="#000"/>
+                        <circle cx="105" cy="80" r="8" fill="#FFF" stroke="#FF8C00" stroke-width="2"/>
+                        <circle cx="105" cy="80" r="3" fill="#000"/>
+                    </svg>
+                    <div class="dust-clouds">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <h2 class="order-success-headline">Shukriya! Order Confirmed</h2>
+                <p class="order-success-text" id="order-success-text-el"></p>
+                <div class="order-summary-box" id="checkout-order-summary">
+                    <!-- Dynamic receipt info -->
+                </div>
+                <button class="btn btn-primary checkout-success-close-btn" id="checkout-success-close-btn">Keep Shopping <i class="fa-solid fa-bag-shopping"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Lightbox Modal -->
+    <div class="modal-overlay" id="insta-overlay"></div>
+    <div class="modal insta-modal" id="insta-modal">
+        <button class="modal-close" id="insta-close" aria-label="Close Lightbox">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="insta-lightbox-grid">
+            <div class="insta-lightbox-image-side">
+                <img src="" alt="" id="insta-lightbox-img">
+            </div>
+            <div class="insta-lightbox-details-side">
+                <div class="insta-lightbox-header">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span id="insta-lightbox-handle"></span>
+                </div>
+                <div class="insta-lightbox-comments">
+                    <div class="comment-item">
+                        <strong>@simrdhya_official</strong>
+                        <span>Stunning! Thank you for styling Simrdhya with such grace. ❤️</span>
+                    </div>
+                    <div class="comment-item">
+                        <strong>@deepika_v</strong>
+                        <span>Where can I get this outfit? It looks so premium! 😍</span>
+                    </div>
+                    <div class="comment-item">
+                        <strong>@modern_desi</strong>
+                        <span>Love the border detailing, looks beautiful!</span>
+                    </div>
+                </div>
+                <div class="insta-lightbox-shop-action">
+                    <p>Shop this exact look:</p>
+                    <button class="btn btn-primary btn-block" id="insta-shop-look-btn">Shop The Look <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal (Login / Register) -->
+    <div class="modal-overlay" id="auth-overlay"></div>
+    <div class="modal auth-modal" id="auth-modal">
+        <button class="modal-close" id="auth-close" aria-label="Close Authentication">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="auth-modal-content">
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Login</button>
+                <button class="auth-tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <div class="auth-panel active" id="auth-panel-login">
+                <h3 class="auth-panel-title">Welcome Back</h3>
+                <p class="auth-panel-subtitle">Log in to track your Caravan orders</p>
+                <form id="login-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="E.g., avani@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                </form>
+            </div>
+
+            <div class="auth-panel" id="auth-panel-register">
+                <h3 class="auth-panel-title">Create Account</h3>
+                <p class="auth-panel-subtitle">Join the Caravan for exclusive ethnic styles</p>
+                <form id="register-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" required placeholder="E.g., Avani Sharma">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" required placeholder="E.g., avani@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number</label>
+                        <input type="tel" id="register-phone" placeholder="E.g., +91 98765 43210">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required placeholder="Create password (min 6 chars)">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register <i class="fa-solid fa-user-plus"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Profile Modal (Order History) -->
+    <div class="modal-overlay" id="profile-overlay"></div>
+    <div class="modal profile-modal" id="profile-modal">
+        <button class="modal-close" id="profile-close" aria-label="Close Profile">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="profile-modal-content">
+            <div class="profile-header-dashboard">
+                <div class="profile-user-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                <div class="profile-user-details-dashboard">
+                    <h2 id="profile-dashboard-name">Customer Name</h2>
+                    <p id="profile-dashboard-email">customer@gmail.com</p>
+                    <p id="profile-dashboard-phone" style="font-size: 0.85rem; color: var(--color-secondary);"></p>
+                </div>
+                <button class="btn btn-secondary logout-btn" id="logout-btn" style="margin-left: auto; padding: 0.5rem 1.2rem; font-size: 0.8rem;">Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </div>
+            
+            <h3 class="profile-section-title"><i class="fa-solid fa-receipt"></i> Your Booked Caravan Orders</h3>
+            <div class="profile-orders-history-container" id="profile-orders-history-container">
+                <!-- Dynamically populated past orders -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS Script -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
