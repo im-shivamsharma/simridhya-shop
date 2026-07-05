@@ -2,6 +2,15 @@
 
 const BASE_URL = "/api";
 
+// Custom API Error Class
+export class ApiError extends Error {
+    constructor(message, status) {
+        super(message);
+        this.name = "ApiError";
+        this.status = status;
+    }
+}
+
 // Dynamic Toast Helper
 export function showToast(message, type = "success") {
     let container = document.getElementById("toast-container");
@@ -95,7 +104,7 @@ export async function request(endpoint, options = {}) {
         }
         
         if (!response.ok) {
-            throw new Error(data.message || `Request failed with status ${response.status}`);
+            throw new ApiError(data.message || `Request failed with status ${response.status}`, response.status);
         }
         return data;
     } catch (error) {

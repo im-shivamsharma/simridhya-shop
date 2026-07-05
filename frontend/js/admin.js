@@ -87,7 +87,11 @@ async function checkAdminAuth() {
             handleAdminLogout();
         }
     } catch (err) {
-        handleAdminLogout();
+        if (err.status === 401 || err.status === 403) {
+            handleAdminLogout();
+        } else {
+            showToast("Caravan connection failed. Please refresh.", "error");
+        }
     } finally {
         showGlobalLoader(false);
     }

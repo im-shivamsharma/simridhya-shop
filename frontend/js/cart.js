@@ -56,7 +56,6 @@ export async function addToCart(productId, size, color) {
             // error toasted
         }
     } else {
-        // Guest mode LocalStorage cart
         const existingIndex = cart.findIndex(item => 
             (item.id === productId || item.productId === productId) && 
             item.selectedSize === size && 
@@ -65,27 +64,41 @@ export async function addToCart(productId, size, color) {
         
         if (existingIndex > -1) {
             cart[existingIndex].quantity += 1;
+            localStorage.setItem("simrdhya_cart", JSON.stringify(cart));
+            showToast("Item added to local Caravan.");
+            renderCart();
+            openCartDrawer();
         } else {
-            // Find product detail locally
-            const productsGrid = document.getElementById("products-grid");
-            // If they are offline, save a partial skeleton structure that will load in renderCart
-            cart.push({
-                productId: productId,
-                id: productId,
-                name: "Saree / Kurta",
-                price: 2499,
-                image: "assets/prod_yellow_kurta.png",
-                selectedSize: size,
-                selectedColor: color,
-                quantity: 1
+            // Asynchronously resolve product list to prevent circular import issues
+            import("./products.js").then(module => {
+                const product = module.loadedProducts.find(p => p._id === productId);
+                const itemDetail = product ? {
+                    productId: product._id,
+                    id: product._id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.images && product.images.length > 0 ? product.images[0] : "assets/prod_yellow_kurta.png",
+                    selectedSize: size,
+                    selectedColor: color,
+                    quantity: 1
+                } : {
+                    productId: productId,
+                    id: productId,
+                    name: "Saree / Kurta",
+                    price: 2499,
+                    image: "assets/prod_yellow_kurta.png",
+                    selectedSize: size,
+                    selectedColor: color,
+                    quantity: 1
+                };
+                cart.push(itemDetail);
+                localStorage.setItem("simrdhya_cart", JSON.stringify(cart));
+                showToast("Item added to local Caravan.");
+                renderCart();
+                openCartDrawer();
             });
         }
-        localStorage.setItem("simrdhya_cart", JSON.stringify(cart));
-        showToast("Item added to local Caravan.");
     }
-    
-    renderCart();
-    openCartDrawer();
 }
 
 export async function updateQuantity(productId, size, color, newQty) {

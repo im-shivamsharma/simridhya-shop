@@ -1,9 +1,36 @@
-// Authentication and Profile Management Controller
-
 import { request, showToast } from "./api.js";
 import { openModal, closeModal } from "./modal.js";
 
 export let currentUser = null;
+
+// Cached DOM Elements for Mobile Navigation Drawer
+let mobWelcomeEl = null;
+let mobWish = null;
+let mobCart = null;
+let mobOrders = null;
+let mobProfile = null;
+let mobEdit = null;
+let mobSettings = null;
+let mobLogin = null;
+let mobLogout = null;
+let mobContact = null;
+let mobAbout = null;
+
+function initDomCache() {
+    if (mobWelcomeEl) return;
+    
+    mobWelcomeEl = document.getElementById("mobile-welcome-text");
+    mobWish = document.getElementById("mob-wishlist-lnk");
+    mobCart = document.getElementById("mob-cart-lnk");
+    mobOrders = document.getElementById("mob-orders-lnk");
+    mobProfile = document.getElementById("mob-profile-lnk");
+    mobEdit = document.getElementById("mob-edit-profile-lnk");
+    mobSettings = document.getElementById("mob-settings-lnk");
+    mobLogin = document.getElementById("mob-auth-login");
+    mobLogout = document.getElementById("mob-auth-logout");
+    mobContact = document.getElementById("mob-contact-lnk");
+    mobAbout = document.getElementById("mob-about-lnk");
+}
 
 export async function checkSession() {
     const token = localStorage.getItem("simrdhya_token");
@@ -17,8 +44,10 @@ export async function checkSession() {
         currentUser = data.user;
         updateUserUI(currentUser);
     } catch (err) {
-        localStorage.removeItem("simrdhya_token");
-        updateUserUI(null);
+        if (err.status === 401 || err.status === 403) {
+            localStorage.removeItem("simrdhya_token");
+            updateUserUI(null);
+        }
     }
 }
 
@@ -39,9 +68,13 @@ function updateUserUI(user) {
             nameEl.style.display = "none";
         }
     }
+    
+    // Dynamically update mobile hamburger menu options according to state
+    updateMobileMenu(user);
 }
 
 export function setupAuth() {
+    initDomCache();
     const trigger = document.getElementById("user-profile-trigger");
     const authClose = document.getElementById("auth-close");
     const authOverlay = document.getElementById("auth-overlay");
@@ -167,6 +200,70 @@ export function setupAuth() {
             window.dispatchEvent(new CustomEvent("simrdhya:auth_changed"));
         });
     }
+
+    // Close nav menu drawer helper
+    const closeNavDrawer = () => {
+        const navMenu = document.getElementById("nav-menu");
+        if (navMenu) navMenu.classList.remove("active");
+    };
+
+    // Mobile Account Action Links Bindings
+
+    if (mobWish) {
+        mobWish.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeNavDrawer();
+            if (currentUser) {
+                renderProfileDashboard();
+                openModal("profile-modal", "profile-overlay");
+            } else {
+                openModal("auth-modal", "auth-overlay");
+            }
+        });
+    }
+
+    if (mobCart) {
+        mobCart.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeNavDrawer();
+            const cartTrigger = document.getElementById("cart-trigger");
+            if (cartTrigger) cartTrigger.click();
+        });
+    }
+
+    const triggerProfileModal = (e) => {
+        e.preventDefault();
+        closeNavDrawer();
+        if (currentUser) {
+            renderProfileDashboard();
+            openModal("profile-modal", "profile-overlay");
+        }
+    };
+
+    if (mobOrders) mobOrders.addEventListener("click", triggerProfileModal);
+    if (mobProfile) mobProfile.addEventListener("click", triggerProfileModal);
+    if (mobEdit) mobEdit.addEventListener("click", triggerProfileModal);
+    if (mobSettings) mobSettings.addEventListener("click", triggerProfileModal);
+
+    if (mobLogin) {
+        mobLogin.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeNavDrawer();
+            openModal("auth-modal", "auth-overlay");
+        });
+    }
+
+    if (mobLogout) {
+        mobLogout.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeNavDrawer();
+            localStorage.removeItem("simrdhya_token");
+            updateUserUI(null);
+            showToast("Logged out successfully.");
+            
+            window.dispatchEvent(new CustomEvent("simrdhya:auth_changed"));
+        });
+    }
 }
 
 export async function renderProfileDashboard() {
@@ -239,3 +336,48 @@ export async function renderProfileDashboard() {
         container.innerHTML = `<div style="text-align: center; color: var(--color-art-pink); padding: 2rem;"><i class="fa-solid fa-triangle-exclamation"></i><p>Failed to load orders. Please retry.</p></div>`;
     }
 }
+
+// Dynamically sync mobile hamburger menu list options based on user auth status
+export function updateMobileMenu(user) {
+    initDomCache();
+    
+    // Always hide Edit Profile and Settings sub-links to keep layout clean
+    if (mobEdit) mobEdit.parentElement.style.display = "none";
+    if (mobSettings) mobSettings.parentElement.style.display = "none";
+
+    if (user) {
+        // Logged In
+        const firstName = user.fullName.split(" ")[0];
+        if (mobWelcomeEl) {
+            mobWelcomeEl.innerHTML = `Hello,<br>${firstName} 👋`;
+            mobWelcomeEl.parentElement.style.display = "block";
+        }
+        
+        if (mobProfile) mobProfile.parentElement.style.display = "block";
+        if (mobOrders) mobOrders.parentElement.style.display = "block";
+        if (mobWish) mobWish.parentElement.style.display = "block";
+        if (mobCart) mobCart.parentElement.style.display = "block";
+        if (mobContact) mobContact.parentElement.style.display = "block";
+        if (mobAbout) mobAbout.parentElement.style.display = "block";
+        if (mobLogout) mobLogout.parentElement.style.display = "block";
+        
+        if (mobLogin) mobLogin.parentElement.style.display = "none";
+    } else {
+        // Logged Out
+        if (mobWelcomeEl) {
+            mobWelcomeEl.innerHTML = "";
+            mobWelcomeEl.parentElement.style.display = "none";
+        }
+        
+        if (mobProfile) mobProfile.parentElement.style.display = "none";
+        if (mobOrders) mobOrders.parentElement.style.display = "none"; // HIDE orders on logged out
+        if (mobWish) mobWish.parentElement.style.display = "block";
+        if (mobCart) mobCart.parentElement.style.display = "block";
+        if (mobContact) mobContact.parentElement.style.display = "block";
+        if (mobAbout) mobAbout.parentElement.style.display = "block";
+        if (mobLogout) mobLogout.parentElement.style.display = "none";
+        
+        if (mobLogin) mobLogin.parentElement.style.display = "block";
+    }
+}
+

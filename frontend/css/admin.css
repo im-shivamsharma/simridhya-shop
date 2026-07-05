@@ -434,3 +434,108 @@ body {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- Admin Mobile Responsive Overrides (< 768px) --- */
+@media (max-width: 768px) {
+    .admin-dashboard-container {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+    }
+    .admin-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        padding: 1.5rem !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--color-admin-border) !important;
+    }
+    .admin-sidebar-header {
+        margin-bottom: 1.5rem !important;
+        text-align: center !important;
+    }
+    .admin-nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        justify-content: center !important;
+    }
+    .admin-nav-btn {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.82rem !important;
+    }
+    .admin-nav-btn-link {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.82rem !important;
+    }
+    .admin-sidebar-footer {
+        margin-top: 1.5rem !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        border-top: 1px solid rgba(255,255,255,0.08) !important;
+        padding-top: 1rem !important;
+    }
+    .admin-main-content {
+        padding: 1.5rem !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Section header wrap */
+    .admin-section-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .admin-section-header .admin-btn {
+        width: 100% !important;
+    }
+    .admin-section-header div {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .admin-section-header input {
+        width: 100% !important;
+    }
+    
+    /* Table scrollability */
+    .admin-card-table {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .admin-table {
+        min-width: 750px !important;
+    }
+    .admin-table th, 
+    .admin-table td {
+        padding: 0.8rem 1rem !important;
+    }
+
+    /* Modals responsive */
+    .admin-modal {
+        width: 95% !important;
+        max-width: 95% !important;
+        padding: 1.5rem !important;
+    }
+    .form-row {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    .form-row .form-group {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-login-card {
+        padding: 2rem 1.5rem !important;
+        margin: 1rem !important;
+        width: 95% !important;
+    }
+    .admin-logo .brand-text {
+        font-size: 2rem !important;
+    }
+}

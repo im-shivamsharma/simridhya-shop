@@ -38,18 +38,16 @@ def add_to_wishlist(current_user):
     if not productId:
         return jsonify({"message": "Product ID is required!"}), 400
         
-    wish_doc = db.wishlist.find_one({"userId": user_id})
-    if not wish_doc:
-        wish_doc = {"userId": user_id, "productIds": []}
-        db.wishlist.insert_one(wish_doc)
-        wish_doc = db.wishlist.find_one({"userId": user_id})
-        
-    productIds = wish_doc.get("productIds", [])
-    if productId not in productIds:
-        productIds.append(productId)
-        db.wishlist.update_one({"userId": user_id}, {"$set": {"productIds": productIds}})
-        
-    resolved = resolve_wishlist_products(productIds)
+    # Atomic push to array with upsert
+    db.wishlist.update_one(
+        {"userId": user_id},
+        {"$addToSet": {"productIds": productId}},
+        upsert=True
+    )
+    
+    # Reload to return the fresh resolved list
+    wish_doc = db.wishlist.find_one({"userId": user_id}) or {}
+    resolved = resolve_wishlist_products(wish_doc.get("productIds", []))
     return jsonify(resolved), 200
 
 @wishlist_bp.route("/wishlist", methods=["DELETE"])
@@ -62,14 +60,12 @@ def remove_from_wishlist(current_user):
     if not productId:
         return jsonify({"message": "Product ID is required!"}), 400
         
-    wish_doc = db.wishlist.find_one({"userId": user_id})
-    if not wish_doc:
-        return jsonify({"message": "Wishlist not found!"}), 404
-        
-    productIds = wish_doc.get("productIds", [])
-    if productId in productIds:
-        productIds.remove(productId)
-        db.wishlist.update_one({"userId": user_id}, {"$set": {"productIds": productIds}})
-        
-    resolved = resolve_wishlist_products(productIds)
+    # Atomic pull from array
+    db.wishlist.update_one(
+        {"userId": user_id},
+        {"$pull": {"productIds": productId}}
+    )
+    
+    wish_doc = db.wishlist.find_one({"userId": user_id}) or {}
+    resolved = resolve_wishlist_products(wish_doc.get("productIds", []))
     return jsonify(resolved), 200

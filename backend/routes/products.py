@@ -65,12 +65,26 @@ def create_product(current_user):
         name = request.form.get("name")
         description = request.form.get("description")
         category = request.form.get("category")
-        price = float(request.form.get("price", 0))
-        originalPrice = float(request.form.get("originalPrice", 0))
-        stock = int(request.form.get("stock", 0))
         badge = request.form.get("badge", "NEW")
-        rating = float(request.form.get("rating", 4.5))
-        reviews = int(request.form.get("reviews", 0))
+        
+        # Validation checks
+        try:
+            price = float(request.form.get("price", 0))
+            originalPrice = float(request.form.get("originalPrice", 0))
+        except ValueError:
+            return jsonify({"message": "Price and Original Price must be valid numbers!"}), 400
+            
+        try:
+            stock = int(request.form.get("stock", 0))
+        except ValueError:
+            return jsonify({"message": "Stock count must be a valid integer!"}), 400
+            
+        try:
+            rating = float(request.form.get("rating", 4.5))
+            reviews = int(request.form.get("reviews", 0))
+        except ValueError:
+            rating = 4.5
+            reviews = 0
         
         sizes = request.form.getlist("sizes") or ["S", "M", "L", "XL"]
         
@@ -92,7 +106,6 @@ def create_product(current_user):
                     img_url = upload_image(f)
                     images.append(img_url)
         
-        # If no images uploaded, set a default
         if not images:
             images = ["assets/prod_yellow_kurta.png"]
     else:
@@ -101,18 +114,32 @@ def create_product(current_user):
         name = data.get("name")
         description = data.get("description")
         category = data.get("category")
-        price = float(data.get("price", 0))
-        originalPrice = float(data.get("originalPrice", 0))
-        stock = int(data.get("stock", 0))
         badge = data.get("badge", "NEW")
-        rating = float(data.get("rating", 4.5))
-        reviews = int(data.get("reviews", 0))
+        
+        try:
+            price = float(data.get("price", 0))
+            originalPrice = float(data.get("originalPrice", 0))
+        except ValueError:
+            return jsonify({"message": "Price and Original Price must be valid numbers!"}), 400
+            
+        try:
+            stock = int(data.get("stock", 0))
+        except ValueError:
+            return jsonify({"message": "Stock count must be a valid integer!"}), 400
+            
+        try:
+            rating = float(data.get("rating", 4.5))
+            reviews = int(data.get("reviews", 0))
+        except ValueError:
+            rating = 4.5
+            reviews = 0
+            
         images = data.get("images", ["assets/prod_yellow_kurta.png"])
         sizes = data.get("sizes", ["S", "M", "L", "XL"])
         colors = data.get("colors", [])
         
-    if not name or not category or not price:
-        return jsonify({"message": "Missing required fields (name, category, price)!"}), 400
+    if not name or not category:
+        return jsonify({"message": "Missing required fields (name, category)!"}), 400
         
     new_prod = {
         "name": name,
@@ -145,20 +172,29 @@ def update_product(current_user, product_id):
     if not doc:
         return jsonify({"message": "Product not found!"}), 404
         
+    update_data = {}
     if request.content_type and "multipart/form-data" in request.content_type:
-        update_data = {}
         for key in ["name", "description", "category", "badge"]:
             val = request.form.get(key)
             if val is not None:
                 update_data[key] = val
+        
+        # Validated casting
         for key in ["price", "originalPrice", "rating"]:
             val = request.form.get(key)
             if val is not None:
-                update_data[key] = float(val)
+                try:
+                    update_data[key] = float(val)
+                except ValueError:
+                    return jsonify({"message": f"{key} must be a valid number!"}), 400
+                    
         for key in ["stock", "reviews"]:
             val = request.form.get(key)
             if val is not None:
-                update_data[key] = int(val)
+                try:
+                    update_data[key] = int(val)
+                except ValueError:
+                    return jsonify({"message": f"{key} must be a valid integer!"}), 400
                 
         sizes = request.form.getlist("sizes")
         if sizes:
@@ -185,16 +221,24 @@ def update_product(current_user, product_id):
     else:
         # JSON body
         data = request.get_json() or {}
-        update_data = {}
         for key in ["name", "description", "category", "badge"]:
             if key in data:
                 update_data[key] = data[key]
+                
         for key in ["price", "originalPrice", "rating"]:
             if key in data:
-                update_data[key] = float(data[key])
+                try:
+                    update_data[key] = float(data[key])
+                except ValueError:
+                    return jsonify({"message": f"{key} must be a valid number!"}), 400
+                    
         for key in ["stock", "reviews"]:
             if key in data:
-                update_data[key] = int(data[key])
+                try:
+                    update_data[key] = int(data[key])
+                except ValueError:
+                    return jsonify({"message": f"{key} must be a valid integer!"}), 400
+                    
         for key in ["images", "sizes", "colors"]:
             if key in data:
                 update_data[key] = data[key]

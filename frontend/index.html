@@ -38,12 +38,27 @@
                 <button class="menu-close" id="menu-close" aria-label="Close Menu">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
+                <div class="mobile-menu-header" style="display: none; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.06); width: 100%;">
+                    <h3 id="mobile-welcome-text" style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 800; line-height: 1.3;">Hello,<br>Guest 👋</h3>
+                </div>
                 <ul class="nav-list">
-                    <li><a href="#" class="nav-link active">Home</a></li>
-                    <li><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
-                    <li><a href="#categories" class="nav-link">Shop Categories</a></li>
-                    <li><a href="#about-us" class="nav-link">Our Kahani</a></li>
-                    <li><a href="#contact" class="nav-link">Baat Karein</a></li>
+                    <li class="desktop-only-link"><a href="#" class="nav-link active">Home</a></li>
+                    <li class="desktop-only-link"><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
+                    <li class="desktop-only-link"><a href="#categories" class="nav-link">Shop Categories</a></li>
+                    <li class="desktop-only-link"><a href="#about-us" class="nav-link">Our Kahani</a></li>
+                    <li class="desktop-only-link"><a href="#contact" class="nav-link">Baat Karein</a></li>
+                    
+                    <!-- Mobile-Only Navigation Links -->
+                    <li class="mobile-only-link" style="display: none;"><a href="#wishlist" id="mob-wishlist-lnk" class="nav-link"><i class="fa-regular fa-heart" style="margin-right: 0.5rem;"></i> Wishlist</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#cart" id="mob-cart-lnk" class="nav-link"><i class="fa-solid fa-bag-shopping" style="margin-right: 0.5rem;"></i> Cart</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#orders" id="mob-orders-lnk" class="nav-link"><i class="fa-solid fa-receipt" style="margin-right: 0.5rem;"></i> Orders</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#profile" id="mob-profile-lnk" class="nav-link"><i class="fa-regular fa-user" style="margin-right: 0.5rem;"></i> Profile</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#edit-profile" id="mob-edit-profile-lnk" class="nav-link"><i class="fa-solid fa-user-gear" style="margin-right: 0.5rem;"></i> Edit Profile</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#settings" id="mob-settings-lnk" class="nav-link"><i class="fa-solid fa-gears" style="margin-right: 0.5rem;"></i> Account Settings</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#auth" id="mob-auth-login" class="nav-link"><i class="fa-solid fa-right-to-bracket" style="margin-right: 0.5rem;"></i> Login / Register</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#logout" id="mob-auth-logout" class="nav-link" style="color: var(--color-art-red);"><i class="fa-solid fa-right-from-bracket" style="margin-right: 0.5rem;"></i> Logout</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#contact" id="mob-contact-lnk" class="nav-link"><i class="fa-solid fa-message" style="margin-right: 0.5rem;"></i> Contact Us</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#about-us" id="mob-about-lnk" class="nav-link"><i class="fa-solid fa-circle-info" style="margin-right: 0.5rem;"></i> About Us</a></li>
                 </ul>
             </nav>
 
@@ -66,6 +81,14 @@
         <!-- Truck-Art Pattern Accent Border -->
         <div class="truck-art-border-bottom"></div>
     </header>
+
+    <!-- Mobile-Only Search Bar Container -->
+    <div class="mobile-search-bar-container" style="display: none;">
+        <div class="search-box">
+            <input type="text" placeholder="Search kurtas, sarees..." id="mobile-search-input">
+            <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main>
@@ -356,7 +379,42 @@
                     <p class="section-subtitle">Tag @SimrdhyaOfficial and use #SimrdhyaSlayers to get featured</p>
                 </div>
                 <div class="instagram-feed" id="instagram-feed">
-                    <!-- Dynamic Instagram Grid -->
+                    <div class="instagram-item">
+                        <img src="assets/cat_kurtis.png" alt="Styled Kurti" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer1</span>
+                        </div>
+                    </div>
+                    <div class="instagram-item">
+                        <img src="assets/cat_sarees.png" alt="Styled Saree" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer2</span>
+                        </div>
+                    </div>
+                    <div class="instagram-item">
+                        <img src="assets/cat_fusion.png" alt="Styled Fusion Wear" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer3</span>
+                        </div>
+                    </div>
+                    <div class="instagram-item">
+                        <img src="assets/prod_yellow_kurta.png" alt="Yellow Kurta Style" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer4</span>
+                        </div>
+                    </div>
+                    <div class="instagram-item">
+                        <img src="assets/prod_pink_lehenga.png" alt="Pink Lehenga Style" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer5</span>
+                        </div>
+                    </div>
+                    <div class="instagram-item">
+                        <img src="assets/prod_blue_fusion.png" alt="Blue Fusion Style" class="instagram-img">
+                        <div class="instagram-hover">
+                            <span><i class="fa-brands fa-instagram"></i> @simrdhya_slayer6</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

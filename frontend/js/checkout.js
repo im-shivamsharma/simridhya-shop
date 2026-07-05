@@ -173,56 +173,7 @@ async function placeOrder() {
         }
         
         if (orderSummaryBox) {
-            let receiptHtml = `
-                <h4>🌸 CARAVAN RECEIPT</h4>
-                <div class="order-summary-row">
-                    <span>Customer Name:</span>
-                    <strong>${shippingAddress.fullName}</strong>
-                </div>
-                <div class="order-summary-row">
-                    <span>Garments Ordered:</span>
-                    <strong>${productsList.reduce((total, item) => total + item.quantity, 0)} Items</strong>
-                </div>
-                <hr style="border: 0; border-top: 1px dashed rgba(0,0,0,0.1); margin: 0.5rem 0;">
-            `;
-            
-            productsList.forEach(item => {
-                receiptHtml += `
-                    <div class="order-summary-row" style="font-size: 0.85rem; color: var(--color-secondary);">
-                        <span>${item.name} (${item.selectedSize}) x${item.quantity}</span>
-                        <span>₹${(item.price * item.quantity).toLocaleString("en-IN")}</span>
-                    </div>
-                `;
-            });
-            
-            receiptHtml += `
-                <hr style="border: 0; border-top: 1px dashed rgba(0,0,0,0.1); margin: 0.5rem 0;">
-                <div class="order-summary-row">
-                    <span>Bag Subtotal:</span>
-                    <span>₹${checkoutSubtotal.toLocaleString("en-IN")}</span>
-                </div>
-            `;
-            
-            if (checkoutDiscount > 0) {
-                receiptHtml += `
-                    <div class="order-summary-row" style="color: var(--color-art-green);">
-                        <span>Coupon Discount (${activeCouponCode}):</span>
-                        <span>-₹${checkoutDiscount.toLocaleString("en-IN")}</span>
-                    </div>
-                `;
-            }
-            
-            receiptHtml += `
-                <div class="order-summary-row" style="font-size: 0.88rem; font-weight: 600;">
-                    <span>Shipping & Highway Tolls:</span>
-                    <span style="color: var(--color-art-teal);">FREE</span>
-                </div>
-                <div class="order-summary-row total">
-                    <span>Paid Total:</span>
-                    <span>₹${checkoutTotal.toLocaleString("en-IN")}</span>
-                </div>
-            `;
-            orderSummaryBox.innerHTML = receiptHtml;
+            orderSummaryBox.innerHTML = buildReceiptHtml(productsList, shippingAddress, checkoutSubtotal, checkoutDiscount, checkoutTotal);
         }
         
         showToast("Caravan Order booked successfully!");
@@ -238,4 +189,58 @@ async function placeOrder() {
         nextBtn.disabled = false;
         nextBtn.innerHTML = originalText;
     }
+}
+
+function buildReceiptHtml(productsList, shippingAddress, subtotal, discount, total) {
+    let receiptHtml = `
+        <h4>🌸 CARAVAN RECEIPT</h4>
+        <div class="order-summary-row">
+            <span>Customer Name:</span>
+            <strong>${shippingAddress.fullName}</strong>
+        </div>
+        <div class="order-summary-row">
+            <span>Garments Ordered:</span>
+            <strong>${productsList.reduce((acc, item) => acc + item.quantity, 0)} Items</strong>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed rgba(0,0,0,0.1); margin: 0.5rem 0;">
+    `;
+    
+    productsList.forEach(item => {
+        receiptHtml += `
+            <div class="order-summary-row" style="font-size: 0.85rem; color: var(--color-secondary);">
+                <span>${item.name} (${item.selectedSize}) x${item.quantity}</span>
+                <span>₹${(item.price * item.quantity).toLocaleString("en-IN")}</span>
+            </div>
+        `;
+    });
+    
+    receiptHtml += `
+        <hr style="border: 0; border-top: 1px dashed rgba(0,0,0,0.1); margin: 0.5rem 0;">
+        <div class="order-summary-row">
+            <span>Bag Subtotal:</span>
+            <span>₹${subtotal.toLocaleString("en-IN")}</span>
+        </div>
+    `;
+    
+    if (discount > 0) {
+        receiptHtml += `
+            <div class="order-summary-row" style="color: var(--color-art-green);">
+                <span>Coupon Discount (${activeCouponCode}):</span>
+                <span>-₹${discount.toLocaleString("en-IN")}</span>
+            </div>
+        `;
+    }
+    
+    receiptHtml += `
+        <div class="order-summary-row" style="font-size: 0.88rem; font-weight: 600;">
+            <span>Shipping & Highway Tolls:</span>
+            <span style="color: var(--color-art-teal);">FREE</span>
+        </div>
+        <div class="order-summary-row total">
+            <span>Paid Total:</span>
+            <span>₹${total.toLocaleString("en-IN")}</span>
+        </div>
+    `;
+    
+    return receiptHtml;
 }

@@ -1,7 +1,5 @@
-// Application Orchestration Entry Script
-
 import { checkSession, setupAuth } from "./auth.js";
-import { fetchAndRenderProducts, setupProducts, openQuickView } from "./products.js";
+import { fetchAndRenderProducts, setupProducts, openQuickView, loadedProducts } from "./products.js";
 import { setupCart } from "./cart.js";
 import { setupSearch } from "./search.js";
 import { setupCheckout } from "./checkout.js";
@@ -33,22 +31,46 @@ function setupMobileMenu() {
     const menuClose = document.getElementById("menu-close");
     const navMenu = document.getElementById("nav-menu");
     
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.add("active");
-        });
+    const openMenu = () => {
+        if (navMenu) navMenu.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent scrolling behind
+    };
+    
+    const closeMenu = () => {
+        if (navMenu) navMenu.classList.remove("active");
+        document.body.style.overflow = "";
+    };
+    
+    if (menuToggle) {
+        menuToggle.addEventListener("click", openMenu);
     }
     
-    if (menuClose && navMenu) {
-        menuClose.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-        });
+    if (menuClose) {
+        menuClose.addEventListener("click", closeMenu);
     }
+    
+    // Close menu when clicking outside of the drawer
+    const handleOutsideClick = (e) => {
+        if (navMenu && navMenu.classList.contains("active")) {
+            const isClickInsideMenu = navMenu.contains(e.target);
+            const isClickOnToggle = menuToggle && menuToggle.contains(e.target);
+            if (!isClickInsideMenu && !isClickOnToggle) {
+                closeMenu();
+            }
+        }
+    };
+    document.addEventListener("click", handleOutsideClick);
+
+    // Close menu when pressing Escape key
+    const handleEscapeKey = (e) => {
+        if (e.key === "Escape" && navMenu && navMenu.classList.contains("active")) {
+            closeMenu();
+        }
+    };
+    document.addEventListener("keydown", handleEscapeKey);
 
     document.querySelectorAll(".nav-link").forEach(link => {
-        link.addEventListener("click", () => {
-            if (navMenu) navMenu.classList.remove("active");
-        });
+        link.addEventListener("click", closeMenu);
     });
 }
 
@@ -187,26 +209,22 @@ function setupInstagramLightbox() {
         else if (imgSrc.includes("pink_lehenga")) category = "sarees";
         else if (imgSrc.includes("blue_fusion")) category = "fusion";
         
-        const productsList = window.loadedProducts || [];
-        // Read from imported loadedProducts in products module
-        import("./products.js").then(module => {
-            const found = module.loadedProducts.find(p => p.category === category);
-            if (found) {
-                productIdToShop = found._id;
-            } else if (module.loadedProducts.length > 0) {
-                productIdToShop = module.loadedProducts[0]._id;
-            }
+        const found = loadedProducts.find(p => p.category === category);
+        if (found) {
+            productIdToShop = found._id;
+        } else if (loadedProducts.length > 0) {
+            productIdToShop = loadedProducts[0]._id;
+        }
+        
+        if (productIdToShop && instaShopLookBtn) {
+            const newBtn = instaShopLookBtn.cloneNode(true);
+            instaShopLookBtn.parentNode.replaceChild(newBtn, instaShopLookBtn);
             
-            if (productIdToShop && instaShopLookBtn) {
-                const newBtn = instaShopLookBtn.cloneNode(true);
-                instaShopLookBtn.parentNode.replaceChild(newBtn, instaShopLookBtn);
-                
-                newBtn.addEventListener("click", () => {
-                    closeModal("insta-modal", "insta-overlay");
-                    openQuickView(productIdToShop);
-                });
-            }
-        });
+            newBtn.addEventListener("click", () => {
+                closeModal("insta-modal", "insta-overlay");
+                openQuickView(productIdToShop);
+            });
+        }
         
         openModal("insta-modal", "insta-overlay");
     });

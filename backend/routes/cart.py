@@ -49,12 +49,14 @@ def add_to_cart(current_user):
     if not productId or not size or not color:
         return jsonify({"message": "Product ID, size, and color are required!"}), 400
         
+    # Atomic initialization
+    db.cart.update_one(
+        {"userId": user_id},
+        {"$setOnInsert": {"items": []}},
+        upsert=True
+    )
+    
     cart_doc = db.cart.find_one({"userId": user_id})
-    if not cart_doc:
-        cart_doc = {"userId": user_id, "items": []}
-        db.cart.insert_one(cart_doc)
-        cart_doc = db.cart.find_one({"userId": user_id})
-        
     items = cart_doc.get("items", [])
     
     exists = False
