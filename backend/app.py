@@ -22,7 +22,7 @@ from routes.orders import orders_bp
 from routes.coupons import coupons_bp
 from routes.forms import forms_bp
 
-app.register_blueprint(auth_bp, url_prefix="/api")
+app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(products_bp, url_prefix="/api")
 app.register_blueprint(cart_bp, url_prefix="/api")
 app.register_blueprint(wishlist_bp, url_prefix="/api")

@@ -44,21 +44,20 @@
                 <ul class="nav-list">
                     <li class="desktop-only-link"><a href="#" class="nav-link active">Home</a></li>
                     <li class="desktop-only-link"><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
-                    <li class="desktop-only-link"><a href="#categories" class="nav-link">Shop Categories</a></li>
-                    <li class="desktop-only-link"><a href="#about-us" class="nav-link">Our Kahani</a></li>
-                    <li class="desktop-only-link"><a href="#contact" class="nav-link">Baat Karein</a></li>
+                    <li class="desktop-only-link"><a href="#about-us" class="nav-link">Our Story</a></li>
+                    <li class="desktop-only-link"><a href="#why-simrdhya" class="nav-link">Why Simrdhya</a></li>
                     
                     <!-- Mobile-Only Navigation Links -->
+                    <li class="mobile-only-link" style="display: none;"><a href="#" id="mob-home-lnk" class="nav-link"><i class="fa-solid fa-house" style="margin-right: 0.5rem;"></i> Home</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#new-arrivals" id="mob-new-lnk" class="nav-link"><i class="fa-solid fa-fire" style="margin-right: 0.5rem;"></i> New Arrivals</a></li>
                     <li class="mobile-only-link" style="display: none;"><a href="#wishlist" id="mob-wishlist-lnk" class="nav-link"><i class="fa-regular fa-heart" style="margin-right: 0.5rem;"></i> Wishlist</a></li>
                     <li class="mobile-only-link" style="display: none;"><a href="#cart" id="mob-cart-lnk" class="nav-link"><i class="fa-solid fa-bag-shopping" style="margin-right: 0.5rem;"></i> Cart</a></li>
                     <li class="mobile-only-link" style="display: none;"><a href="#orders" id="mob-orders-lnk" class="nav-link"><i class="fa-solid fa-receipt" style="margin-right: 0.5rem;"></i> Orders</a></li>
-                    <li class="mobile-only-link" style="display: none;"><a href="#profile" id="mob-profile-lnk" class="nav-link"><i class="fa-regular fa-user" style="margin-right: 0.5rem;"></i> Profile</a></li>
-                    <li class="mobile-only-link" style="display: none;"><a href="#edit-profile" id="mob-edit-profile-lnk" class="nav-link"><i class="fa-solid fa-user-gear" style="margin-right: 0.5rem;"></i> Edit Profile</a></li>
-                    <li class="mobile-only-link" style="display: none;"><a href="#settings" id="mob-settings-lnk" class="nav-link"><i class="fa-solid fa-gears" style="margin-right: 0.5rem;"></i> Account Settings</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#profile" id="mob-profile-lnk" class="nav-link"><i class="fa-regular fa-user" style="margin-right: 0.5rem;"></i> My Profile</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#about-us" id="mob-about-lnk" class="nav-link"><i class="fa-solid fa-circle-info" style="margin-right: 0.5rem;"></i> Our Story</a></li>
+                    <li class="mobile-only-link" style="display: none;"><a href="#why-simrdhya" id="mob-why-lnk" class="nav-link"><i class="fa-solid fa-star" style="margin-right: 0.5rem;"></i> Why Simrdhya</a></li>
                     <li class="mobile-only-link" style="display: none;"><a href="#auth" id="mob-auth-login" class="nav-link"><i class="fa-solid fa-right-to-bracket" style="margin-right: 0.5rem;"></i> Login / Register</a></li>
                     <li class="mobile-only-link" style="display: none;"><a href="#logout" id="mob-auth-logout" class="nav-link" style="color: var(--color-art-red);"><i class="fa-solid fa-right-from-bracket" style="margin-right: 0.5rem;"></i> Logout</a></li>
-                    <li class="mobile-only-link" style="display: none;"><a href="#contact" id="mob-contact-lnk" class="nav-link"><i class="fa-solid fa-message" style="margin-right: 0.5rem;"></i> Contact Us</a></li>
-                    <li class="mobile-only-link" style="display: none;"><a href="#about-us" id="mob-about-lnk" class="nav-link"><i class="fa-solid fa-circle-info" style="margin-right: 0.5rem;"></i> About Us</a></li>
                 </ul>
             </nav>
 
@@ -163,91 +162,12 @@
             </div>
         </section>
 
-        <!-- Shop by Category Section -->
-        <section id="categories" class="categories-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="header-motif">
-                        <svg class="motif-peacocks" viewBox="0 0 200 60">
-                            <!-- Left Peacock -->
-                            <path d="M20,40 C10,35 5,20 15,10 C25,5 35,15 35,25 C35,35 45,45 60,45" fill="none" stroke="#00D2C4" stroke-width="3"/>
-                            <path d="M15,10 C20,10 25,15 22,22 C18,25 12,20 15,10 Z" fill="#FF1493"/>
-                            <circle cx="18" cy="14" r="2" fill="#FFD700"/>
-                            <!-- Right Peacock -->
-                            <path d="M180,40 C190,35 195,20 185,10 C175,5 165,15 165,25 C165,35 155,45 140,45" fill="none" stroke="#00D2C4" stroke-width="3"/>
-                            <path d="M185,10 C180,10 175,15 178,22 C182,25 188,20 185,10 Z" fill="#FF1493"/>
-                            <circle cx="182" cy="14" r="2" fill="#FFD700"/>
-                            <!-- Center Lotus -->
-                            <path d="M100,20 C95,30 90,35 100,50 C110,35 105,30 100,20 Z" fill="#FF1493" stroke="#FFD700" stroke-width="2"/>
-                            <path d="M100,30 C88,40 92,45 100,50 C108,45 112,40 100,30 Z" fill="#FF8C00" stroke="#FFD700" stroke-width="1.5"/>
-                            <path d="M85,38 C92,38 95,45 100,50 C95,45 80,42 85,38 Z" fill="#FF1493" stroke="#FFD700" stroke-width="1.5"/>
-                            <path d="M115,38 C108,38 105,45 100,50 C105,45 120,42 115,38 Z" fill="#FF1493" stroke="#FFD700" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <h2 class="section-title">Shop by Category</h2>
-                    <p class="section-subtitle">Discover curated premium collections styled for modern celebrations</p>
-                </div>
-
-                <div class="categories-grid">
-                    <!-- Category Card 1 -->
-                    <div class="category-card" data-category="kurtas">
-                        <div class="category-img-container">
-                            <img src="assets/cat_kurtis.png" alt="Premium Kurtas & Kurtis Collection" class="category-image">
-                            <div class="category-overlay">
-                                <div class="category-border-decor"></div>
-                                <div class="category-content-inner">
-                                    <h3 class="category-card-title">Kurtas & Kurtis</h3>
-                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Category Card 2 -->
-                    <div class="category-card" data-category="sarees">
-                        <div class="category-img-container">
-                            <img src="assets/cat_sarees.png" alt="Elegant Festive Sarees & Lehengas" class="category-image">
-                            <div class="category-overlay">
-                                <div class="category-border-decor"></div>
-                                <div class="category-content-inner">
-                                    <h3 class="category-card-title">Sarees & Lehengas</h3>
-                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Category Card 3 -->
-                    <div class="category-card" data-category="fusion">
-                        <div class="category-img-container">
-                            <img src="assets/cat_fusion.png" alt="Contemporary Indo-Western Fusion Wear" class="category-image">
-                            <div class="category-overlay">
-                                <div class="category-border-decor"></div>
-                                <div class="category-content-inner">
-                                    <h3 class="category-card-title">Fusion Wear</h3>
-                                    <span class="category-card-link">Explore Collection <i class="fa-solid fa-arrow-right-long"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- New Arrivals / Store Grid Section -->
         <section id="new-arrivals" class="arrivals-section">
             <div class="container">
-                <div class="section-header text-center">
+                <div class="section-header text-center" style="margin-bottom: 3rem;">
                     <h2 class="section-title">New Arrivals</h2>
                     <p class="section-subtitle">Freshly dropped handcrafted ethnic styles to elevate your style quotient</p>
-                </div>
-
-                <!-- Store Filters -->
-                <div class="store-filters">
-                    <button class="filter-btn active" data-filter="all">All Styles</button>
-                    <button class="filter-btn" data-filter="kurtas">Kurtas & Kurtis</button>
-                    <button class="filter-btn" data-filter="sarees">Sarees & Lehengas</button>
-                    <button class="filter-btn" data-filter="fusion">Fusion Wear</button>
                 </div>
 
                 <!-- Product Grid -->
@@ -338,22 +258,6 @@
                         <p class="about-p">
                             Historically a medium for truckers to display their hometown pride, religious devotion, and poetic wit, truck art represents the unfiltered soul of India's pop culture. We extract its most stunning elements—vibrant colors, clean hand-painted motifs, and decorative borders—and blend them into premium contemporary clothing.
                         </p>
-                        <div class="about-features">
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
-                                <div>
-                                    <h4>Premium Fabrics</h4>
-                                    <p>Crafted using luxury handloom silks, raw cottons, and breathable linens.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                <div>
-                                    <h4>Ethically Handcrafted</h4>
-                                    <p>Fair wages and direct support for rural craft clusters across western India.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="about-visuals">
                         <div class="decor-collage">
@@ -363,8 +267,34 @@
                             </div>
                             <div class="decor-panel panel-yellow">
                                 <h3>Buri Nazar Wale</h3>
-                                <p>Tera Mooh Kala! Protect your wardrope from boring fashion.</p>
+                                <p>Tera Mooh Kala! Protect your wardrobe from boring fashion.</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Simrdhya Section -->
+        <section id="why-simrdhya" class="why-section" style="background-color: var(--color-cream); padding: 5rem 0; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 4rem;">
+                    <span class="about-tagline">WHY SIMRDHYA</span>
+                    <h2 class="section-title">The Simrdhya Promise</h2>
+                </div>
+                <div class="why-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem;">
+                    <div class="feature-item" style="display: flex; gap: 1.5rem; background: var(--color-white); padding: 2.5rem; border: 2px solid var(--color-primary); box-shadow: 4px 4px 0 var(--color-primary);">
+                        <div class="feature-icon" style="font-size: 2rem; color: var(--color-art-pink);"><i class="fa-solid fa-gem"></i></div>
+                        <div>
+                            <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.6rem;">Premium Fabrics</h4>
+                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-secondary);">Crafted using luxury handloom silks, raw cottons, and breathable linens.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" style="display: flex; gap: 1.5rem; background: var(--color-white); padding: 2.5rem; border: 2px solid var(--color-primary); box-shadow: 4px 4px 0 var(--color-primary);">
+                        <div class="feature-icon" style="font-size: 2rem; color: var(--color-art-pink);"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <div>
+                            <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.6rem;">Ethically Handcrafted</h4>
+                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-secondary);">Fair wages and direct support for rural craft clusters across western India.</p>
                         </div>
                     </div>
                 </div>
@@ -717,12 +647,12 @@
             <div class="checkout-stepper">
                 <div class="step-indicator active" data-step="1">
                     <span class="step-num">1</span>
-                    <span class="step-text">Details</span>
+                    <span class="step-text">Address</span>
                 </div>
                 <div class="step-line"></div>
                 <div class="step-indicator" data-step="2">
                     <span class="step-num">2</span>
-                    <span class="step-text">Payment</span>
+                    <span class="step-text">Review</span>
                 </div>
                 <div class="step-line"></div>
                 <div class="step-indicator" data-step="3">
@@ -767,63 +697,26 @@
                 </form>
             </div>
 
-            <!-- Step 2: Payment Selector -->
+            <!-- Step 2: Review Order -->
             <div class="checkout-step-panel" id="checkout-step-2">
-                <h3 class="checkout-step-title">Payment Method</h3>
-                <div class="payment-method-selector">
-                    <div class="pay-method-card active" data-method="upi">
-                        <div class="pay-icon"><i class="fa-solid fa-qrcode"></i></div>
-                        <span>Instant UPI</span>
-                    </div>
-                    <div class="pay-method-card" data-method="card">
-                        <div class="pay-icon"><i class="fa-solid fa-credit-card"></i></div>
-                        <span>Card Payment</span>
-                    </div>
-                    <div class="pay-method-card" data-method="cod">
-                        <div class="pay-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                        <span>Cash on Delivery</span>
-                    </div>
+                <h3 class="checkout-step-title">Review Your Order</h3>
+                
+                <!-- Review Items Container -->
+                <div id="checkout-review-items" style="max-height: 200px; overflow-y: auto; margin-bottom: 1.5rem; border: 1px solid rgba(0,0,0,0.06); padding: 1rem; background: var(--color-white); border-radius: 4px;">
+                    <!-- Dynamically populated -->
+                </div>
+                
+                <!-- Review Totals Box -->
+                <div class="order-summary-box" id="checkout-review-summary" style="margin-bottom: 1.5rem; padding: 1.2rem; background: var(--color-cream); border: 2px solid var(--color-primary); box-shadow: 4px 4px 0 var(--color-primary);">
+                    <!-- Dynamically populated totals (Subtotal, Discount, Shipping, Total) -->
                 </div>
 
-                <!-- UPI Container -->
-                <div class="payment-details-container active" id="pay-container-upi">
-                    <p class="pay-desc">Scan this QR Code using any UPI app (GPay, PhonePe, Paytm) to complete payment.</p>
-                    <div class="upi-qr-wrapper">
-                        <div class="mock-qr-code">
-                            <div class="qr-block top-left"></div>
-                            <div class="qr-block top-right"></div>
-                            <div class="qr-block bottom-left"></div>
-                            <div class="qr-pattern"></div>
-                        </div>
-                        <div class="upi-amount-badge">Payable: <strong id="upi-total-amount">₹0</strong></div>
-                    </div>
+                <!-- Cash on Delivery Notice -->
+                <div class="payment-method-cod-notice" style="background-color: rgba(0, 210, 196, 0.08); border: 2px solid var(--color-art-teal); padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; border-radius: 4px;">
+                    <div style="font-size: 1.6rem; color: var(--color-art-teal);"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                    <p style="font-size: 0.88rem; line-height: 1.4; margin: 0; color: var(--color-primary); font-weight: 500;"><strong>Cash on Delivery (COD) Enabled</strong><br>You will pay for this order in cash or UPI when your Caravan arrives.</p>
                 </div>
-
-                <!-- Card Container -->
-                <div class="payment-details-container" id="pay-container-card">
-                    <form id="card-payment-form" class="checkout-form">
-                        <div class="form-group">
-                            <label for="card-num">Card Number</label>
-                            <input type="text" id="card-num" placeholder="XXXX XXXX XXXX XXXX">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="card-expiry">Expiry Date</label>
-                                <input type="text" id="card-expiry" placeholder="MM/YY">
-                            </div>
-                            <div class="form-group">
-                                <label for="card-cvv">CVV</label>
-                                <input type="password" id="card-cvv" placeholder="XXX">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- COD Container -->
-                <div class="payment-details-container" id="pay-container-cod">
-                    <p class="pay-desc">✨ Cash on Delivery (COD) order. Pay in cash or via UPI to our delivery partner when your Caravan arrives.</p>
-                </div>
-
+                
                 <div class="payment-actions">
                     <button class="btn btn-secondary checkout-back-btn" id="pay-back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
                     <button class="btn btn-primary checkout-next-btn" id="pay-submit-btn">Place Order <i class="fa-solid fa-check"></i></button>
@@ -951,6 +844,44 @@
                     <button type="submit" class="btn btn-primary btn-block">Register <i class="fa-solid fa-user-plus"></i></button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <!-- OTP Verification Modal -->
+    <div class="modal-overlay" id="otp-overlay"></div>
+    <div class="modal auth-modal" id="otp-modal" style="max-width: 480px;">
+        <button class="modal-close" id="otp-close" aria-label="Close OTP Verification">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="auth-modal-content" style="padding: 2.5rem 2rem;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 3rem; color: var(--color-art-pink); margin-bottom: 1rem;"><i class="fa-solid fa-envelope-circle-check"></i></div>
+                <h3 class="auth-panel-title" style="margin-bottom: 0.5rem;">Verify Your Account</h3>
+                <p class="auth-panel-subtitle" style="font-size: 0.9rem; line-height: 1.4;">We've sent a verification code to your email.<br><strong id="otp-display-email" style="color: var(--color-primary);"></strong></p>
+            </div>
+            
+            <form id="otp-form" class="checkout-form">
+                <!-- 6 separate OTP input boxes -->
+                <div style="display: flex; gap: 0.8rem; justify-content: center; margin: 2rem 0;" class="otp-input-container">
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-input-box" style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; font-weight: 800; border: 2px solid var(--color-primary); background-color: var(--color-cream); box-shadow: 2px 2px 0 var(--color-art-yellow); outline: none;" required>
+                </div>
+                
+                <div style="text-align: center; font-size: 0.88rem; margin-bottom: 2rem; font-weight: 700; color: var(--color-secondary);">
+                    Code expires in: <span id="otp-timer" style="color: var(--color-art-red);">05:00</span>
+                </div>
+                
+                <button type="submit" id="otp-submit-btn" class="btn btn-primary btn-block">Verify Code <i class="fa-solid fa-shield-check"></i></button>
+                
+                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.88rem;">
+                    Didn't receive the code? 
+                    <button type="button" id="otp-resend-btn" style="background: none; border: none; color: var(--color-art-pink); font-weight: 700; cursor: pointer; text-decoration: underline; padding: 0;" disabled>Resend Code (<span id="otp-resend-countdown">60</span>s)</button>
+                </div>
+            </form>
         </div>
     </div>
 

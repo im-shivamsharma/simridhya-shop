@@ -1,34 +1,35 @@
 import { request, showToast } from "./api.js";
 import { openModal, closeModal } from "./modal.js";
+import { openOtpModal } from "./otp.js";
 
 export let currentUser = null;
 
 // Cached DOM Elements for Mobile Navigation Drawer
 let mobWelcomeEl = null;
+let mobHome = null;
+let mobNew = null;
 let mobWish = null;
 let mobCart = null;
 let mobOrders = null;
 let mobProfile = null;
-let mobEdit = null;
-let mobSettings = null;
 let mobLogin = null;
 let mobLogout = null;
-let mobContact = null;
+let mobWhy = null;
 let mobAbout = null;
 
 function initDomCache() {
     if (mobWelcomeEl) return;
     
     mobWelcomeEl = document.getElementById("mobile-welcome-text");
+    mobHome = document.getElementById("mob-home-lnk");
+    mobNew = document.getElementById("mob-new-lnk");
     mobWish = document.getElementById("mob-wishlist-lnk");
     mobCart = document.getElementById("mob-cart-lnk");
     mobOrders = document.getElementById("mob-orders-lnk");
     mobProfile = document.getElementById("mob-profile-lnk");
-    mobEdit = document.getElementById("mob-edit-profile-lnk");
-    mobSettings = document.getElementById("mob-settings-lnk");
     mobLogin = document.getElementById("mob-auth-login");
     mobLogout = document.getElementById("mob-auth-logout");
-    mobContact = document.getElementById("mob-contact-lnk");
+    mobWhy = document.getElementById("mob-why-lnk");
     mobAbout = document.getElementById("mob-about-lnk");
 }
 
@@ -40,7 +41,7 @@ export async function checkSession() {
     }
     
     try {
-        const data = await request("/profile");
+        const data = await request("/auth/profile");
         currentUser = data.user;
         updateUserUI(currentUser);
     } catch (err) {
@@ -72,6 +73,7 @@ function updateUserUI(user) {
     // Dynamically update mobile hamburger menu options according to state
     updateMobileMenu(user);
 }
+export { updateUserUI };
 
 export function setupAuth() {
     initDomCache();
@@ -129,7 +131,7 @@ export function setupAuth() {
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Logging in...`;
             
             try {
-                const data = await request("/login", {
+                const data = await request("/auth/login", {
                     method: "POST",
                     body: { email, password }
                 });
@@ -142,7 +144,11 @@ export function setupAuth() {
                 
                 window.dispatchEvent(new CustomEvent("simrdhya:auth_changed"));
             } catch (err) {
-                // error toasted
+                // If account is unverified, open the OTP verification screen
+                if (err.status === 403) {
+                    closeModal("auth-modal", "auth-overlay");
+                    openOtpModal(email);
+                }
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
@@ -169,18 +175,17 @@ export function setupAuth() {
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Registering...`;
             
             try {
-                const data = await request("/signup", {
+                await request("/auth/register", {
                     method: "POST",
                     body: { fullName, email, phone, password }
                 });
                 
-                localStorage.setItem("simrdhya_token", data.token);
-                updateUserUI(data.user);
-                showToast("Welcome! Registration completed.");
                 closeModal("auth-modal", "auth-overlay");
                 registerForm.reset();
                 
-                window.dispatchEvent(new CustomEvent("simrdhya:auth_changed"));
+                // Open OTP verification modal directly
+                openOtpModal(email);
+                showToast("Verification code sent to your email!");
             } catch (err) {
                 // toasted
             } finally {
@@ -341,9 +346,13 @@ export async function renderProfileDashboard() {
 export function updateMobileMenu(user) {
     initDomCache();
     
-    // Always hide Edit Profile and Settings sub-links to keep layout clean
-    if (mobEdit) mobEdit.parentElement.style.display = "none";
-    if (mobSettings) mobSettings.parentElement.style.display = "none";
+    // Core links always displayed in both states
+    if (mobHome) mobHome.parentElement.style.display = "block";
+    if (mobNew) mobNew.parentElement.style.display = "block";
+    if (mobWish) mobWish.parentElement.style.display = "block";
+    if (mobCart) mobCart.parentElement.style.display = "block";
+    if (mobWhy) mobWhy.parentElement.style.display = "block";
+    if (mobAbout) mobAbout.parentElement.style.display = "block";
 
     if (user) {
         // Logged In
@@ -353,12 +362,8 @@ export function updateMobileMenu(user) {
             mobWelcomeEl.parentElement.style.display = "block";
         }
         
-        if (mobProfile) mobProfile.parentElement.style.display = "block";
         if (mobOrders) mobOrders.parentElement.style.display = "block";
-        if (mobWish) mobWish.parentElement.style.display = "block";
-        if (mobCart) mobCart.parentElement.style.display = "block";
-        if (mobContact) mobContact.parentElement.style.display = "block";
-        if (mobAbout) mobAbout.parentElement.style.display = "block";
+        if (mobProfile) mobProfile.parentElement.style.display = "block";
         if (mobLogout) mobLogout.parentElement.style.display = "block";
         
         if (mobLogin) mobLogin.parentElement.style.display = "none";
@@ -369,12 +374,8 @@ export function updateMobileMenu(user) {
             mobWelcomeEl.parentElement.style.display = "none";
         }
         
+        if (mobOrders) mobOrders.parentElement.style.display = "none";
         if (mobProfile) mobProfile.parentElement.style.display = "none";
-        if (mobOrders) mobOrders.parentElement.style.display = "none"; // HIDE orders on logged out
-        if (mobWish) mobWish.parentElement.style.display = "block";
-        if (mobCart) mobCart.parentElement.style.display = "block";
-        if (mobContact) mobContact.parentElement.style.display = "block";
-        if (mobAbout) mobAbout.parentElement.style.display = "block";
         if (mobLogout) mobLogout.parentElement.style.display = "none";
         
         if (mobLogin) mobLogin.parentElement.style.display = "block";

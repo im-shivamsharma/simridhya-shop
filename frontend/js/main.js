@@ -5,6 +5,7 @@ import { setupSearch } from "./search.js";
 import { setupCheckout } from "./checkout.js";
 import { openModal, closeModal } from "./modal.js";
 import { request, showToast } from "./api.js";
+import { setupOtpVerification } from "./otp.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     // Initial Session Validation
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupSearch();
     setupCheckout();
     setupAuth();
+    setupOtpVerification();
     
     setupContactAndNewsletter();
     setupInstagramLightbox();

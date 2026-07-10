@@ -1,13 +1,15 @@
 // SIMRDHYA Admin Panel Dashboard Controller
 
 import { request, showToast } from "./api.js";
+import { openModal, closeModal } from "./modal.js";
 
 // Session State
 let token = localStorage.getItem("simrdhya_token");
 let productsList = [];
 let ordersList = [];
 let couponsList = [];
-let productToDeleteId = null;
+let deleteType = ""; // "product" or "coupon"
+let itemToDeleteId = null;
 let isSavingProduct = false;
 let isSavingCoupon = false;
 
@@ -79,7 +81,7 @@ async function checkAdminAuth() {
     
     showGlobalLoader(true);
     try {
-        const data = await request("/profile");
+        const data = await request("/auth/profile");
         if (data.user && data.user.isAdmin) {
             showDashboard(data.user);
         } else {
@@ -125,7 +127,7 @@ async function handleAdminLogin(e) {
     submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...`;
     
     try {
-        const data = await request("/login", {
+        const data = await request("/auth/login", {
             method: "POST",
             body: { email, password }
         });
@@ -349,44 +351,57 @@ function setupDeleteConfirmation() {
     if (deleteConfirmClose) {
         deleteConfirmClose.addEventListener("click", () => {
             closeModal("delete-confirm-modal", "delete-confirm-overlay");
-            productToDeleteId = null;
+            itemToDeleteId = null;
+            deleteType = "";
         });
     }
     if (deleteConfirmCancel) {
         deleteConfirmCancel.addEventListener("click", () => {
             closeModal("delete-confirm-modal", "delete-confirm-overlay");
-            productToDeleteId = null;
+            itemToDeleteId = null;
+            deleteType = "";
         });
     }
     
     if (deleteConfirmAction) {
         deleteConfirmAction.addEventListener("click", async () => {
-            if (!productToDeleteId) return;
+            if (!itemToDeleteId) return;
             
             closeModal("delete-confirm-modal", "delete-confirm-overlay");
             showGlobalLoader(true);
             
             try {
-                await request(`/products/${productToDeleteId}`, {
-                    method: "DELETE"
-                });
-                showToast("Garment deleted successfully.");
-                
-                // Real-time local array filter
-                productsList = productsList.filter(p => p._id !== productToDeleteId);
-                renderProductsTable();
+                if (deleteType === "product") {
+                    await request(`/products/${itemToDeleteId}`, {
+                        method: "DELETE"
+                    });
+                    showToast("Garment deleted successfully.");
+                    productsList = productsList.filter(p => p._id !== itemToDeleteId);
+                    renderProductsTable();
+                } else if (deleteType === "coupon") {
+                    await request(`/coupons/${itemToDeleteId}`, {
+                        method: "DELETE"
+                    });
+                    showToast("Coupon deleted successfully.");
+                    couponsList = couponsList.filter(c => c._id !== itemToDeleteId);
+                    renderCouponsTable();
+                }
             } catch (err) {
                 // error toasted
             } finally {
                 showGlobalLoader(false);
-                productToDeleteId = null;
+                itemToDeleteId = null;
+                deleteType = "";
             }
         });
     }
 }
 
 function deleteProduct(productId) {
-    productToDeleteId = productId;
+    itemToDeleteId = productId;
+    deleteType = "product";
+    const textEl = document.getElementById("delete-confirm-text");
+    if (textEl) textEl.textContent = "Are you sure you want to delete this garment? This action will permanently remove it from the catalog.";
     openModal("delete-confirm-modal", "delete-confirm-overlay");
 }
 
@@ -631,37 +646,10 @@ async function handleCouponSave(e) {
     }
 }
 
-async function deleteCoupon(couponId) {
-    if (!confirm("Are you sure you want to delete this coupon?")) return;
-    
-    showGlobalLoader(true);
-    try {
-        await request(`/coupons/${couponId}`, {
-            method: "DELETE"
-        });
-        showToast("Coupon deleted successfully.");
-        
-        // Dynamic Update
-        couponsList = couponsList.filter(c => c._id !== couponId);
-        renderCouponsTable();
-    } catch (err) {
-        // error toasted
-    } finally {
-        showGlobalLoader(false);
-    }
-}
-
-// Modal helper wrapper imports
-function openModal(modalId, overlayId) {
-    const modal = document.getElementById(modalId);
-    const overlay = document.getElementById(overlayId);
-    if (modal) modal.classList.add("active");
-    if (overlay) overlay.classList.add("active");
-}
-
-function closeModal(modalId, overlayId) {
-    const modal = document.getElementById(modalId);
-    const overlay = document.getElementById(overlayId);
-    if (modal) modal.classList.remove("active");
-    if (overlay) overlay.classList.remove("active");
+function deleteCoupon(couponId) {
+    itemToDeleteId = couponId;
+    deleteType = "coupon";
+    const textEl = document.getElementById("delete-confirm-text");
+    if (textEl) textEl.textContent = "Are you sure you want to delete this discount coupon? This action will permanently remove it from the database.";
+    openModal("delete-confirm-modal", "delete-confirm-overlay");
 }

@@ -117,8 +117,52 @@ function openCheckoutStep(stepNumber) {
     if (targetPanel) targetPanel.classList.add("active");
     
     if (stepNumber === 2) {
-        const upiTotalEl = document.getElementById("upi-total-amount");
-        if (upiTotalEl) upiTotalEl.textContent = `₹${checkoutTotal.toLocaleString("en-IN")}`;
+        // Populate review items list
+        const reviewItemsEl = document.getElementById("checkout-review-items");
+        if (reviewItemsEl) {
+            let itemsHtml = "";
+            cart.forEach(item => {
+                const price = item.price || 0;
+                itemsHtml += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.02); padding-bottom: 0.6rem;">
+                        <span style="font-weight: 700; color: var(--color-primary);">${item.name} (${item.selectedSize}) x${item.quantity}</span>
+                        <span style="color: var(--color-art-pink); font-weight: 800;">₹${(price * item.quantity).toLocaleString("en-IN")}</span>
+                    </div>
+                `;
+            });
+            reviewItemsEl.innerHTML = itemsHtml;
+        }
+        
+        // Populate review summary box
+        const reviewSummaryEl = document.getElementById("checkout-review-summary");
+        if (reviewSummaryEl) {
+            let summaryHtml = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; font-size: 0.9rem; color: var(--color-secondary);">
+                    <span>Bag Subtotal:</span>
+                    <span>₹${checkoutSubtotal.toLocaleString("en-IN")}</span>
+                </div>
+            `;
+            if (checkoutDiscount > 0) {
+                summaryHtml += `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; font-size: 0.9rem; color: var(--color-art-green); font-weight: 700;">
+                        <span>Coupon Discount (${activeCouponCode}):</span>
+                        <span>-₹${checkoutDiscount.toLocaleString("en-IN")}</span>
+                    </div>
+                `;
+            }
+            summaryHtml += `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; font-size: 0.9rem; color: var(--color-secondary); font-weight: 700;">
+                    <span>Shipping & Tolls:</span>
+                    <span style="color: var(--color-art-teal);">FREE</span>
+                </div>
+                <hr style="border: 0; border-top: 1px dashed rgba(0,0,0,0.1); margin: 0.8rem 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 800; color: var(--color-art-pink);">
+                    <span>Amount Payable:</span>
+                    <span>₹${checkoutTotal.toLocaleString("en-IN")}</span>
+                </div>
+            `;
+            reviewSummaryEl.innerHTML = summaryHtml;
+        }
     }
     
     openModal("checkout-modal", "checkout-overlay");
